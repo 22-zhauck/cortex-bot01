@@ -8,6 +8,8 @@
  */
 
 #include "main.h"
+#include "portDef.h"
+#include "chassis.h"
 
 /*
  * Runs the user autonomous code. This function will be started in its own task with the default
@@ -24,4 +26,9 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+  // drive forward a bit
+  chassisSet(50,50);            // drive forward half speed
+  wait(1000);
+  pivotTurn(0,50,90,false);     // turn 90degrees
+  chassisSet(0,0);              //stop motors
 }
