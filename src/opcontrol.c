@@ -33,6 +33,7 @@
  */
  void operatorControl() {
    //int power, turn;
+   lcdClear(uart1);
    lcdPrint(uart1, 1, "bot01 - opcntrl");
 
    int power;

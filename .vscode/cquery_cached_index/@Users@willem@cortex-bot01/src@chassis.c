@@ -10,7 +10,7 @@ void chassisSet(int left, int right) {
   motorSet(RM_B_DRIVE, -right);
 }
 
-void pivotTurn(int direction, int speed, int angle, bool gyro) {
+void pivotTurn(int direction, int speed, float angle, bool gyro) {
   // direction -- 1 = left turn, 0 = right pivotTurn
   // speed -- -127 -- 127
   // angle -- desired turn angle in degrees
@@ -24,22 +24,47 @@ void pivotTurn(int direction, int speed, int angle, bool gyro) {
   float motorDegree = (((angle/360) * turnCircum) / wheelCircum) * 360;
 
   if(DEBUG_ON) {
-    lcdPrint(uart1, 1, "cortex-bot01 - pivotTurn");
-    lcdPrint(uart1, 2, "Mdegree: %1.3f Deg", motorDegree);
+    printf("turnCricum: %1.2f \n", turnCircum);
+    printf("wheelCricum: %1.2f \n", wheelCircum);
+    printf("turn Angle: %1.2f \n", angle);
+    printf("motorDegree: %1.2f \n", motorDegree);
+
+    lcdPrint(uart1, 1, "bot01 - pivotTurn");
+    lcdPrint(uart1, 2, "Mdegree: %1.1f Deg", motorDegree);
   }
-  
+
   if(direction == 1) {
     //Left turn
     // we need todo a while loop and count until we get to motorDegree
     // on quadriatic encoders
     encoderReset(encoderLM);
+    wait(10);                   // give encoder time to reset
 
     while(encoderGet(encoderLM) <= motorDegree) {
+      if(DEBUG_ON){
+        printf("encoderLM: %d \n", encoderGet(encoderLM));
+      }
       motorSet(LM_F_DRIVE, speed);
       motorSet(RM_F_DRIVE, speed);
       motorSet(LM_B_DRIVE, speed);
       motorSet(RM_B_DRIVE, speed);
-      wait(20);
+      //wait(1);
+    }
+  } else {
+    //Left turn
+    // we need todo a while loop and count until we get to motorDegree
+    // on quadriatic encoders
+    encoderReset(encoderRM);
+
+    while(encoderGet(encoderRM) <= motorDegree) {
+      if(DEBUG_ON){
+        printf("encoderRM: %d \n", encoderGet(encoderRM));
+      }
+      motorSet(LM_F_DRIVE, -speed);
+      motorSet(RM_F_DRIVE, -speed);
+      motorSet(LM_B_DRIVE, -speed);
+      motorSet(RM_B_DRIVE, -speed);
+      //wait(20);
     }
   }
 }

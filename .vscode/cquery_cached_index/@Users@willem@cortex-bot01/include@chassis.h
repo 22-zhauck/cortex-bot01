@@ -14,8 +14,8 @@
 void chassisSet(int left, int right);
 
 // create pivot turn function
-void pivotTurn(int direction, int speed, int angle, bool gyro);
+void pivotTurn(int direction, int speed, float angle, bool gyro);
 
 // create swing turn function
-void swingTurn(int direction, int speed, int angle, bool gyro);
+void swingTurn(int direction, int speed, float angle, bool gyro);
 #endif // _CHASSIS_H_

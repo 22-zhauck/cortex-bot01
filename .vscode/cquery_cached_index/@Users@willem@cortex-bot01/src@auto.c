@@ -29,10 +29,11 @@
 void autonomous() {
   // Activiate the LCD for feedback data
   lcdScriptInit(uart1); // Example LCD is in UART1
+  lcdClear(uart1);
   lcdPrint(uart1, 1, "bot01 - auto");
   // drive forward a bit
   chassisSet(50,50);            // drive forward half speed
-  wait(1000);
+  wait(300);
   pivotTurn(0,50,90,false);     // turn 90degrees
   chassisSet(0,0);              //stop motors
 }
