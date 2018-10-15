@@ -9,6 +9,7 @@
 
 #include "main.h"
 #include "portDef.h"
+#include "lcd.h"
 
 /*
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
@@ -40,4 +41,9 @@ void initialize() {
   bool not_reversed = false;
   encoderLM = encoderInit(QUAD_TOP_LM_PORT, QUAD_BOTTOM_LM_PORT, is_reversed);
   encoderRM = encoderInit(QUAD_TOP_RM_PORT, QUAD_BOTTOM_RM_PORT, not_reversed);
+
+  lcdScriptInit(uart1); // Example LCD is in UART1
+  lcdClear(uart1);
+  lcdPrint(uart1, 1, "bot01 - init");
+  lcdPrint(uart1, 2, "Batt: %1.3f V", (double)powerLevelMain() / 1000);
 }

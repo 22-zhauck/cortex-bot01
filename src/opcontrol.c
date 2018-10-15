@@ -12,6 +12,8 @@
 #include "claw.h"
 #include "lift.h"
 #include "portDef.h" // All port defintions o nthe cortex
+#include "lcd.h"
+
 /*
  * Runs the user operator control code. This function will be started in its own task with the
  * default priority and stack size whenever the robot is enabled via the Field Management System
@@ -31,6 +33,8 @@
  */
  void operatorControl() {
    //int power, turn;
+   lcdPrint(uart1, 1, "bot01 - opcntrl");
+
    int power;
    int turn;
      while (1) {

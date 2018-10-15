@@ -10,6 +10,7 @@
 #include "main.h"
 #include "portDef.h"
 #include "chassis.h"
+#include "lcd.h"
 
 /*
  * Runs the user autonomous code. This function will be started in its own task with the default
@@ -26,6 +27,9 @@
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
 void autonomous() {
+  // Activiate the LCD for feedback data
+  lcdScriptInit(uart1); // Example LCD is in UART1
+  lcdPrint(uart1, 1, "bot01 - auto");
   // drive forward a bit
   chassisSet(50,50);            // drive forward half speed
   wait(1000);

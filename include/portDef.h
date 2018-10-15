@@ -1,3 +1,5 @@
+#ifndef _portDef_H_
+#define _portDef_H_
 // Create all the port defintions in one place for easy trouble shooting
 #include "API.h"
 
@@ -16,7 +18,12 @@
 #define QUAD_TOP_RM_PORT 4
 #define QUAD_BOTTOM_RM_PORT 5
 
+// ----------- Is DEBUGGING ON ---------------------------------------
+#define DEBUG_ON true
 
+// ----------- Setup sensors as needed -------------------------------
 // Setup Encoder and other device instances
 Encoder encoderLM;
 Encoder encoderRM;
+
+#endif // _LIFT_H_

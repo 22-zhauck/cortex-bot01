@@ -1,6 +1,7 @@
 #include "main.h"    // includes API.h and other headers
 #include "chassis.h" // redundant, but ensures that the corresponding header file (chassis.h) is included
-#include "portDef.h" // All port defintions o nthe cortex
+#include "portDef.h" // All port defintions on the cortex
+#include "lcd.h"
 
 void chassisSet(int left, int right) {
   motorSet(LM_F_DRIVE, left);
@@ -22,6 +23,11 @@ void pivotTurn(int direction, int speed, int angle, bool gyro) {
 
   float motorDegree = (((angle/360) * turnCircum) / wheelCircum) * 360;
 
+  if(DEBUG_ON) {
+    lcdPrint(uart1, 1, "cortex-bot01 - pivotTurn");
+    lcdPrint(uart1, 2, "Mdegree: %1.3f Deg", motorDegree);
+  }
+  
   if(direction == 1) {
     //Left turn
     // we need todo a while loop and count until we get to motorDegree
