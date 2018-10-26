@@ -10,6 +10,70 @@ void chassisSet(int left, int right) {
   motorSet(RM_B_DRIVE, -right);
 }
 
+void drivePID() {
+  // USE PD to drive straight forever
+  int masterPower = 30;
+  int slavePower = 30;
+  int error = 0;
+  int kp = 5;
+
+   //Reset the encoders.
+   encoderReset(encoderLM);
+   encoderReset(encoderRM);
+   //Repeat ten times a second.
+    while(true)
+    {
+      //Set the motor powers to their respective variables.
+      motorSet(LM_F_DRIVE, masterPower);
+      motorSet(LM_B_DRIVE, masterPower);
+      motorSet(RM_F_DRIVE, -slavePower);
+      motorSet(RM_B_DRIVE, -slavePower);
+
+      error = encoderGet(encoderLM) - encoderGet(encoderRM);
+      slavePower += error / kp;
+
+      //Reset the encoders every loop.
+      encoderReset(encoderLM);
+      encoderReset(encoderRM);
+
+      wait(100);
+    }
+}
+
+void driveForDistancePID(int distance, int speed) {
+  float wheelCircum = WHEEL_DIAMETER * 3.14;
+  int motorDegree = (distance / wheelCircum) * 360;  // cast into full degrees
+
+  int totalTicks = 0;               // track total trveled
+  int slavePower = speed - 5;
+  int error = 0;
+  int kp = 5;
+
+  encoderReset(encoderLM);
+  encoderReset(encoderRM);
+ 
+  while(abs(totalTicks) < motorDegree)
+  {
+    motorSet(LM_F_DRIVE, speed);
+    motorSet(LM_B_DRIVE, speed);
+    motorSet(RM_F_DRIVE, -slavePower);
+    motorSet(RM_B_DRIVE, -slavePower);
+
+    error = encoderGet(encoderLM) - encoderGet(encoderRM);
+    slavePower += error / kp;
+
+    wait(100);
+
+    //Add this iteration's encoder values to totalTicks.
+    totalTicks+= encoderGet(encoderLM);
+  }
+  motorSet(LM_F_DRIVE, 0);
+  motorSet(LM_B_DRIVE, 0);
+  motorSet(RM_F_DRIVE, 0);
+  motorSet(RM_B_DRIVE, 0);
+}
+
+
 void pivotTurn(int direction, int speed, float angle, bool gyro) {
   // direction -- 1 = left turn, 0 = right pivotTurn
   // speed -- -127 -- 127
