@@ -17,6 +17,8 @@
 #define QUAD_BOTTOM_LM_PORT 7
 #define QUAD_TOP_RM_PORT 4
 #define QUAD_BOTTOM_RM_PORT 5
+#define QUAD_TOP_LIFT_PORT 1
+#define QUAD_BOTTOM_LIFT_PORT 2
 
 // ----------- Is DEBUGGING ON ---------------------------------------
 #define DEBUG_ON true
@@ -25,5 +27,6 @@
 // Setup Encoder and other device instances
 Encoder encoderLM;
 Encoder encoderRM;
+Encoder encoderLIFT;
 
 #endif // _portDef_H_

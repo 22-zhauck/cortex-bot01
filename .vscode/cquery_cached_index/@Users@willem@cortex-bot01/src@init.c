@@ -41,6 +41,7 @@ void initialize() {
   bool not_reversed = false;
   encoderLM = encoderInit(QUAD_TOP_LM_PORT, QUAD_BOTTOM_LM_PORT, not_reversed);
   encoderRM = encoderInit(QUAD_TOP_RM_PORT, QUAD_BOTTOM_RM_PORT, is_reversed);
+  encoderLIFT = encoderInit(QUAD_TOP_LIFT_PORT, QUAD_BOTTOM_LIFT_PORT, is_reversed);
 
   lcdScriptInit(uart1); // Example LCD is in UART1
   lcdClear(uart1);
