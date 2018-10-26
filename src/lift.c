@@ -20,7 +20,11 @@ void liftPIDtask() {
 
        pidRequestedValue = ...; should be used to set the  target
     */
-
+    // lift PID tuning varibales
+    float  pid_Kp = 2.0;
+    float  pid_Ki = 0.04;
+    float  pid_Kd = 0.0;
+    
     float  pidSensorCurrentValue;
 
     float  pidError;

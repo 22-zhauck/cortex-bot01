@@ -4,10 +4,6 @@
 //#define LIFT_LEFT_M 6
 //#define LIFT_RIGHT_M 7
 
-// lift PID tuning varibales
-float  pid_Kp = 2.0;
-float  pid_Ki = 0.04;
-float  pid_Kd = 0.0;
 
 static int   pidRunning = 1;
 static float pidRequestedValue;
