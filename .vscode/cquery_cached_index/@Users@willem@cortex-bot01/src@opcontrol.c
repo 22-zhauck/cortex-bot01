@@ -38,7 +38,8 @@
 
    int power;
    int turn;
-     while (1) {
+   while (1) {
+         // arcade drive
          power = joystickGetAnalog(1, 2); // vertical axis on left joystick
          turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
          //motorSet(2, power + turn); // set left wheels
@@ -59,5 +60,5 @@
           liftMove(0); // no buttons are pressed, stop the lift
          }
          delay(20);
-     }
+   }
  }
