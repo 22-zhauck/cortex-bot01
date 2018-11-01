@@ -32,18 +32,20 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
  void operatorControl() {
+   bool autoRun = true;
+
    //int power, turn;
    lcdClear(uart1);
    lcdPrint(uart1, 1, "bot01 - opcntrl");
 
-   if(VEXNET_MANUAL) {
+   while(VEXNET_MANUAL && autoRun) {
       // CODE To test Autonomous without VEXnet switch
       // This should never be part of production code
       lcdPrint(uart1, 2, "bot01 - VEXNET");
-      while(true) {
-        if(joystickGetDigital(1, 8, JOY_UP)) {
-          autonomous(); 
-        }
+      if(joystickGetDigital(1, 8, JOY_UP)) {
+          autonomous();
+      } else if(joystickGetDigital(1, 8, JOY_DOWN)) {
+          autoRun = false;
       }
    }
 

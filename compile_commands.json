@@ -21,11 +21,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/claw.c.o",
-            "src/claw.c"
+            "bin/lift.c.o",
+            "src/lift.c"
         ],
         "directory": "/Users/willem/cortex-bot01",
-        "file": "src/claw.c"
+        "file": "src/lift.c"
     },
     {
         "arguments": [
@@ -77,11 +77,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/opcontrol.c.o",
-            "src/opcontrol.c"
+            "bin/lcd.c.o",
+            "src/lcd.c"
         ],
         "directory": "/Users/willem/cortex-bot01",
-        "file": "src/opcontrol.c"
+        "file": "src/lcd.c"
     },
     {
         "arguments": [
@@ -161,11 +161,11 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/lift.c.o",
-            "src/lift.c"
+            "bin/claw.c.o",
+            "src/claw.c"
         ],
         "directory": "/Users/willem/cortex-bot01",
-        "file": "src/lift.c"
+        "file": "src/claw.c"
     },
     {
         "arguments": [
@@ -189,10 +189,10 @@
             "-fdiagnostics-color",
             "-std=gnu99",
             "-o",
-            "bin/lcd.c.o",
-            "src/lcd.c"
+            "bin/opcontrol.c.o",
+            "src/opcontrol.c"
         ],
         "directory": "/Users/willem/cortex-bot01",
-        "file": "src/lcd.c"
+        "file": "src/opcontrol.c"
     }
 ]
