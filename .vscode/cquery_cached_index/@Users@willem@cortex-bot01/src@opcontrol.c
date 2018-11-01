@@ -36,6 +36,17 @@
    lcdClear(uart1);
    lcdPrint(uart1, 1, "bot01 - opcntrl");
 
+   if(VEXNET_MANUAL) {
+      // CODE To test Autonomous without VEXnet switch
+      // This should never be part of production code
+      lcdPrint(uart1, 2, "bot01 - VEXNET");
+      while(true) {
+        if(joystickGetDigital(1, 8, JOY_UP)) {
+          autonomous(); 
+        }
+      }
+   }
+
    int power;
    int turn;
    while (1) {

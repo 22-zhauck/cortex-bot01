@@ -22,7 +22,11 @@
 
 // ----------- Is DEBUGGING ON ---------------------------------------
 #define DEBUG_ON true
-
+#define VEXNET_MANUAL true        // turns opcontrol into allowing for
+                                  // testing autonomous code
+#define VEXNET_TIME 15            // 15 seconds or other time to run
+                                  // not yet implemented
+                                  
 // ----------- Setup sensors as needed -------------------------------
 // Setup Encoder and other device instances
 Encoder encoderLM;

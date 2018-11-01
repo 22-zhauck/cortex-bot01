@@ -36,4 +36,6 @@ void autonomous() {
   wait(300);
   pivotTurn(0,50,90,false);     // turn 90degrees
   chassisSet(0,0);              //stop motors
+  driveForDistancePID(20, 75);  // drive for 20" at 75/127 speed
+  chassisSet(0,0);
 }

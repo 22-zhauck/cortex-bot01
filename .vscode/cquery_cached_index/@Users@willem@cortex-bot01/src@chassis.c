@@ -41,8 +41,16 @@ void drivePID() {
 }
 
 void driveForDistancePID(int distance, int speed) {
+  lcdPrint(uart1, 1, "bot01 - forDistPID");
+  lcdPrint(uart1, 2, "Distance: %d ", distance);
+
   float wheelCircum = WHEEL_DIAMETER * 3.14;
-  int motorDegree = (distance / wheelCircum) * 360;  // cast into full degrees
+  float motorDegree = (distance / wheelCircum) * 360;  // cast into full degrees
+
+  if(DEBUG_ON) {
+    printf("Dist: %1.2f \n", motorDegree);
+    wait(200);                        // Let terminal catch up
+  }
 
   int totalTicks = 0;               // track total trveled
   int slavePower = speed - 5;
@@ -51,7 +59,7 @@ void driveForDistancePID(int distance, int speed) {
 
   encoderReset(encoderLM);
   encoderReset(encoderRM);
- 
+
   while(abs(totalTicks) < motorDegree)
   {
     motorSet(LM_F_DRIVE, speed);
@@ -66,6 +74,11 @@ void driveForDistancePID(int distance, int speed) {
 
     //Add this iteration's encoder values to totalTicks.
     totalTicks+= encoderGet(encoderLM);
+    if(DEBUG_ON) {
+      printf("error: %d", error);
+      printf(" slavePower: %d", slavePower);
+      printf(" totalTicks: %d \n", totalTicks);
+    }
   }
   motorSet(LM_F_DRIVE, 0);
   motorSet(LM_B_DRIVE, 0);
